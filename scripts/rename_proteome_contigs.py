@@ -10,7 +10,7 @@ import argparse as ap
 
 def parse_input_proteome(input_proteome, unique_id):
     '''
-    Parses input proteome file and returns a dictionary of the sequences and oroginal headers.
+    Parses input proteome file and returns a dictionary of the sequences and original headers.
 
     :param input_proteome: path to input proteome
     :type input_proteome: str
@@ -56,7 +56,7 @@ def write_outputs(data_dict, output_proteome, key_tsv):
                                  description=k))
 
     # Write output proteome
-    with open(output_proteome, 'w') as output_proteome
+    with open(output_proteome, 'w') as output_proteome:
         SeqIO.write(records, output_proteome, 'fasta')
 
     # Write key tsv
@@ -79,7 +79,7 @@ if __name__ == '__main__':
     
     in_dir = os.path.abspath(args.in_dir)
     for file in glob.glob(f'{in_dir}/*.faa'):
-        # Get full path to protemome and make sure it exists
+        # Get full path to proteome and make sure it exists
         input_proteome = os.path.abspath(file)
         print(f'Processing {input_proteome}')
 
