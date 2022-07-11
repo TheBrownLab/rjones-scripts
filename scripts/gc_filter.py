@@ -41,7 +41,7 @@ def filter_by_gc(input_genome, output_genome, gc_threshold):
     '''
     with open(input_genome, 'r') as input_genome, open(output_genome, 'w') as output_genome:
         for record in SeqIO.parse(input_genome, 'fasta'):
-            if GC(record.seq) > gc_threshold:
+            if GC(record.seq) < gc_threshold:
                 SeqIO.write(record, output_genome, 'fasta')
 
 
