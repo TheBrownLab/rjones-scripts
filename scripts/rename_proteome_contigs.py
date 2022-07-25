@@ -51,9 +51,9 @@ def write_outputs(data_dict, output_proteome, key_tsv):
     for k, v in data_dict.items():
         key_frags.append(f'{k}\t{v["header"]}')
         records.append(SeqRecord(Seq(v['seq']),
-                                 id='',
+                                 id=k,
                                  name='',
-                                 description=k))
+                                 description=''))
 
     # Write output proteome
     with open(output_proteome, 'w') as output_proteome:
