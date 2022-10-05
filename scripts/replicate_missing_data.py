@@ -17,13 +17,27 @@ def insert_missing_data(real, sim, outfile):
     :param outfile: path to output file
     :type outfile: str
     '''
+    # Parse input files
+    real_records = [record for record in SeqIO.parse(real, 'fasta')]
+    sim_records = [record for record in SeqIO.parse(sim, 'fasta')]
+    # Sort based on taxa name
+    real_records = sorted(real_records, key=lambda x: x.id)
+    sim_records = sorted(sim_records, key=lambda x: x.id)
+    # Make sure same number of taxa in each
+    assert len(real_records) == len(sim_records)
+
+    # Initialize list of records
     out_records = []
-    for real_record, sim_record in zip(SeqIO.parse(real, 'fasta'), SeqIO.parse(sim, 'fasta')):
+
+    # Iterate through SeqRecords
+    for real_record, sim_record in zip(real_records, sim_records):
+        assert real_record.id == sim_record.id
         for i, base in enumerate(real_record.seq):
             if base == '-':
                 sim_record.seq = sim_record.seq[:i] + '-' + sim_record.seq[i:]
         out_records.append(sim_record)
 
+    # Write output matrix
     SeqIO.write(out_records, outfile, 'fasta')
 
 
