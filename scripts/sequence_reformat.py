@@ -1,3 +1,7 @@
+'''
+Reformats a sequence file to a different format.
+'''
+
 import argparse as ap
 from Bio import SeqIO
 
@@ -23,7 +27,7 @@ if __name__ == '__main__':
     with open(args.in_file, 'r') as infile:
         for record in SeqIO.parse(infile, args.in_format):
             records.append(record)
-    
+
     # Write output sequence file
     with open(args.out_file, 'w') as outfile:
         SeqIO.write(records, outfile, args.out_format)
