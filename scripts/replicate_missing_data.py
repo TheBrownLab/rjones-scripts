@@ -19,7 +19,7 @@ def insert_missing_data(real, sim, outfile):
     '''
     # Parse input files
     real_records = [record for record in SeqIO.parse(real, 'fasta')]
-    sim_records = [record for record in SeqIO.parse(sim, 'phylip-relaxed')]
+    sim_records = [record for record in SeqIO.parse(sim, 'fasta')]
     # Sort based on taxa name
     real_records = sorted(real_records, key=lambda x: x.id)
     sim_records = sorted(sim_records, key=lambda x: x.id)
